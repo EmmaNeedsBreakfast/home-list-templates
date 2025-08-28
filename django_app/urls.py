@@ -1,7 +1,16 @@
 from django.urls import path
-from .views import PostView
+from .views import *
+# Agrega esta importación en la parte superior del archivo
+from django_app.views import PostDetailView  # ← Importa la vista
+from .views import PostDetailView
+
 
 urlpatterns = [
-    path('', PostView.as_view(), name='post'),
-    # Agrega más rutas aquí según necesites
+    path('admin/', admin.site.urls),
+    path('', HomePageView.as_view(), name='home'),
+    path('detail/<int:pk>/', PostDetailView.as_view(), name='post_detail'),  # ← Ahora funcionará
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                            document_root=settings.MEDIA_ROOT)

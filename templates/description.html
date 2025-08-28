@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ post.user.username }}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.description }}</p>
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}">
+    {% else %}
+        <p>No image available</p>
+    {% endif %}
+{% endblock %}

@@ -16,9 +16,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from django_app.views import PostView, PostDetailView  # ← Importar ambas vistas
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('', include('django_app.urls')),
-]
+    path('admin/', admin.site.urls),
+    path('', PostView.as_view(), name='home'),  # ← Para la vista de lista
+    path('detail/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
+]   

@@ -1,0 +1,9 @@
+<!-- templates/post_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.descripcion }}</p>
+    <p>Autor: {{ post.user.username }}</p>
+    <a href="{% url 'home' %}">Volver al inicio</a>
+{% endblock %}

@@ -1,16 +1,18 @@
 from django.shortcuts import render
-from .models import Post
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
+from .models import Post  # ← Importar el modelo CORRECTAMENTE
 
 # Create your views here.
 
 class PostView(ListView):
-    model = Post
+    model = Post  # ← Ahora Post está importado desde models.py
     template_name = 'home.html'
     context_object_name = 'posts'
-    # context_object_name = 'posts'
+    
+    def get_queryset(self):
+        return Post.objects.all().select_related('user')[:5]
 
-#from django.http import HttpResponse
-
-#def index(request):
-#    return HttpResponse("¡Hola Mundo! La aplicación está funcionando.")
+class PostDetailView(DetailView):
+    model = Post  # ← Usa el modelo importado
+    template_name = 'post_detail.html'
+    context_object_name = 'post'
