@@ -3,7 +3,7 @@
 {% block content %}
 
 <h1>Description</h1>
-    {% for post in posts_list %}
+    {% for post in object_list %}
         <ul>
             <a href="{% url 'post_detail' post.pk %}">
             <li>{{ post.title }}</li>

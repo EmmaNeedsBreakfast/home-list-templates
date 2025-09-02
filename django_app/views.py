@@ -7,7 +7,7 @@ from .models import Post  # ← Importar el modelo CORRECTAMENTE
 class PostView(ListView):
     model = Post  # ← Ahora Post está importado desde models.py
     template_name = 'home.html'
-    context_object_name = 'posts'
+    # context_object_name = 'posts'
     
     def get_queryset(self):
         return Post.objects.all().select_related('user')[:5]
@@ -15,4 +15,4 @@ class PostView(ListView):
 class PostDetailView(DetailView):
     model = Post  # ← Usa el modelo importado
     template_name = 'post_detail.html'
-    context_object_name = 'post'
+    #  context_object_name = 'posts'

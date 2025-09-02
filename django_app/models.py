@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Post(models.Model):  # ← El modelo debe estar AQUÍ, en models.py
+class Post(models.Model):
     title = models.CharField(max_length=200)
     descripcion = models.TextField(blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)  # ← Agrega null=True temporalmente
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):

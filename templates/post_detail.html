@@ -1,9 +1,12 @@
-<!-- templates/post_detail.html -->
 {% extends 'base.html' %}
 
 {% block content %}
+    {{ post.user.username }}
     <h1>{{ post.title }}</h1>
-    <p>{{ post.descripcion }}</p>
-    <p>Autor: {{ post.user.username }}</p>
-    <a href="{% url 'home' %}">Volver al inicio</a>
+    <p>{{ post.description }}</p>
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}">
+    {% else %}
+        <p>No image available</p>
+    {% endif %}
 {% endblock %}
